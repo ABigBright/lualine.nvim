@@ -173,7 +173,9 @@ function M:update_status()
       if total_length > max_length then
         break
       end
-      table.insert(data, 1, rendered_before)
+      if (self.options.show_before) then
+        table.insert(data, 1, rendered_before)
+      end
     end
     -- draw right most undrawn buffer if fits in max_length
     if after then
@@ -182,7 +184,9 @@ function M:update_status()
       if total_length > max_length then
         break
       end
-      data[#data + 1] = rendered_after
+      if (self.options.show_after) then
+        data[#data + 1] = rendered_after
+      end
     end
   end
   -- draw ellipsis (...) on relevant sides if all buffers don't fit in max_length
